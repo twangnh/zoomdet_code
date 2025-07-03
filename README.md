@@ -5,9 +5,11 @@
 # Adaptive Image Zoom-in with Bounding Box Transformation for Aerial Object Detection
 </div>
 
-this codebase implements the paper *"Adaptive Image Zoom-in with Bounding Box Transformation for Aerial Object Detection"* submitted 
+This codebase implements the paper *"Adaptive Image Zoom-in with Bounding Box Transformation for Aerial Object Detection"* submitted 
 to **ISPRS Journal of Photogrammetry and Remote Sensing**
 
+Faster R-CNN is used in this repository, for the YOLO-based model reported in the paper, please refer to
+[zoomdet_yolo](https://github.com/twangnh/zoomdet_yolo) repository.
 
 
 ## Installation
@@ -25,12 +27,18 @@ Download the datasets from official released sources:
 prepare the data folder as:
 
 ```
-train
-    images
-    instances_train.json
-val
-    images
-    instances_val.json
+data
+    VisDrone
+        train
+            images
+            instances_train.json
+        val
+            images
+            instances_val.json
+    UAVDT
+        ...
+    SeaDroneSee
+        ...
 ```
 
 ## Usage
@@ -70,7 +78,7 @@ python -m torch.distributed.launch --nproc_per_node=4 tools/test.py ./configs/fa
 python -m torch.distributed.launch --nproc_per_node=4 --master_port=2201 tools/train.py ./configs/faster_rcnn/faster-rcnn_r101_fpn_2x_seadronesee.py --work-dir work_dir --num_gpu 4
 ```
 > replace the work_dir with your customized one
-### Test with VisDrone
+### Test with SeaDroneSee
 
 ```
 
